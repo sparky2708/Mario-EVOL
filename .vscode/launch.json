@@ -11,7 +11,7 @@
             "program": "${file}",
             //"console": "integratedTerminal",
             "console": "none",
-            "envFile": "${workspaceFolder}/my.env"
+            "envFile": "${workspaceFolder}/env/my.env"
         },
         {
             "name": "Python: Attach",

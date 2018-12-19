@@ -1,5 +1,5 @@
 {
     "python.pythonPath": "D:\\Anaconda3\\envs\\python27\\python.exe",
-    "python.envFile": "${workspaceFolder}/my.env",
+    "python.envFile": "${workspaceFolder}/env/my.env",
     "python.linting.pylintEnabled": true
 }
