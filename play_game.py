@@ -1,12 +1,16 @@
 import sys
 import nintaco
+import logging as log
+#log.basicConfig(filename="D:\\temp\\debug.log")
+from mario_game import MarioGame
 
 _screen_height = 240
 _screen_width = 256
 
 nintaco.initRemoteAPI("localhost", 9999)
 api = nintaco.getAPI()
-  
+game = MarioGame(api)
+
 def launch():
   api.addFrameListener(renderFinished)
   api.addStatusListener(statusChanged)
@@ -19,7 +23,7 @@ def apiEnabled():
   global _screen_height
   global _screen_width
 
-  print("API enabled")
+  log.debug("API enabled")
 
   # sprite = [0 for i in range(SPRITE_SIZE * SPRITE_SIZE)]
   # for y in range(SPRITE_SIZE):
@@ -34,21 +38,23 @@ def apiEnabled():
   # strY = (240 - 8) / 2
   
 def apiDisabled():
-  print("API disabled")
+  log.debug("API disabled")
   
 def dispose():
-  print("API stopped")
+  log.debug("API stopped")
   
 def statusChanged(message):
-  print("Status message: %s" % message)
+  log.debug("Status message: %s" % message)
   
 def renderFinished():
-  global _screen_height
-  global _screen_width
+  global _screen_height, _screen_width, game
 
   api.setColor(nintaco.BLUE)
   api.fill3DRect(0, 0, _screen_width/4, _screen_height/5, True)
 
+  print("Lives {}".format(game.getLives()))
+  print("Score {}".format(game.getScore()))
+  print("Coins {}".format(game.getCoins()))
   # api.drawSprite(SPRITE_ID, spriteX, spriteY)
   # if spriteX + SPRITE_SIZE == 255:
   #   spriteVx = -1
